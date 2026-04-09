@@ -1,0 +1,40 @@
+# Configuración básica de pre-commit
+# Este archivo define validaciones automáticas antes de cada commit
+# Objetivo: mantener código limpio y evitar errores comunes
+
+repos:
+  # Hooks básicos (oficiales de pre-commit)
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      # Elimina espacios innecesarios al final de línea
+      - id: trailing-whitespace
+
+      # Asegura que todos los archivos terminen con salto de línea
+      - id: end-of-file-fixer
+
+      # Verifica que archivos YAML sean válidos
+      - id: check-yaml
+
+      # Evita subir archivos muy pesados por error
+      - id: check-added-large-files
+
+  # Formateo automático de código Python
+  - repo: https://github.com/psf/black
+    rev: 24.4.2
+    hooks:
+      # Black formatea el código automáticamente siguiendo buenas prácticas
+      - id: black
+
+  # Ordena los imports (mejora legibilidad y consistencia)
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+
+  # Linter para detectar errores y malas prácticas
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.0.0
+    hooks:
+      # Flake8 ayuda a encontrar errores de estilo y posibles bugs
+      - id: flake8
